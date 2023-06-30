@@ -1,4 +1,9 @@
-import {Container, Box, FormControl, Grid, TextField, Button} from "@mui/material";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import {signIn} from "next-auth/react";
 
 const signin = () => {
