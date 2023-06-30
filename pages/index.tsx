@@ -4,6 +4,7 @@ import type { NextPage } from 'next';
 import {MouseEventHandler} from "react";
 import {useRouter} from "next/navigation";
 import {signOut, useSession} from "next-auth/react";
+import DefaultLayout from "@/components/DefaultLayout";
 
 const Home: NextPage = () => {
 
@@ -16,45 +17,38 @@ const Home: NextPage = () => {
 
     if(status === 'loading')
         return (
-            <div style={{
-                width: '100vw',
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>loading</div>
+            <></>
+            // <div style={{
+            //     width: '100vw',
+            //     height: '100vh',
+            //     display: 'flex',
+            //     justifyContent: 'center',
+            //     alignItems: 'center',
+            // }}>loading</div>
         );
 
 
     return (
-      <main
-          style={{
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-      >
-        <div>
-          <header>
-            <h1>MUI5 + Next.js</h1>
-          </header>
-          <section>
-              {
-                  !data && <Button variant={'contained'} onClick={signin}>Signin</Button>
-              }
-              {
-                  data && (<div>
-                      <div>
-                          Welcome {data.user?.name}
-                      </div>
-                      <Button variant={'contained'} onClick={()=> signOut()}>Signout</Button>
-                  </div>)
-              }
-          </section>
-        </div>
-      </main>
+      <DefaultLayout>
+          <div>
+              <header>
+                  <h1>MUI5 + Next.js</h1>
+              </header>
+              <section>
+                  {
+                      !data && <Button variant={'contained'} onClick={signin}>Signin</Button>
+                  }
+                  {
+                      data && (<div>
+                          <div>
+                              Welcome {data.user?.name}
+                          </div>
+                          <Button variant={'contained'} onClick={()=> signOut()}>Signout</Button>
+                      </div>)
+                  }
+              </section>
+          </div>
+      </DefaultLayout>
   );
 };
 

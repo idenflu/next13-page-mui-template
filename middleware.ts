@@ -9,14 +9,29 @@ export async function middleware(req: NextRequest) {
 
     console.log('middleware')
 
-    if (pathname.includes('/auth/signin')) {
+    if (pathname.startsWith('/auth/signin')) {
         if(token) {
             return NextResponse.redirect(new URL('/', req.url))
         }
     }
+
+    if (pathname.startsWith('/users')) {
+        if(!token) {
+            return NextResponse.redirect(new URL('/', req.url))
+        }
+    }
+
+    if (pathname == '/') {
+        if(!token) {
+            return NextResponse.redirect(new URL('/auth/signin', req.url))
+        }
+    }
+
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ['/auth/signin']
+    matcher: ['/auth/signin'
+        , '/'
+        , '/users/:path*']
 }
