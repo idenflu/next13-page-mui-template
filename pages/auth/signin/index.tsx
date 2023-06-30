@@ -1,4 +1,4 @@
-import {Container, Box, FormControl, Grid, TextField, Checkbox, Button} from "@mui/material";
+import {Container, Box, FormControl, Grid, TextField, Button} from "@mui/material";
 import {signIn} from "next-auth/react";
 
 const signin = () => {
@@ -17,14 +17,13 @@ const signin = () => {
             callbackUrl: '/'
         })
 
-        console.log(`app - signin - page = ${JSON.stringify(response)}`)
     };
 
     return (
         <Container>
-
-
-            <Box>
+            <Box sx={{ justifyContent: 'center'
+                , alignItems: 'center'
+                , textAlign:'center'}}>
                 <h1>Sign in</h1>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <FormControl component="fieldset" variant="standard">

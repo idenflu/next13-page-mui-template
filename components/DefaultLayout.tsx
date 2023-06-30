@@ -12,7 +12,9 @@ import {
     ListItemText,
     Toolbar, Typography
 } from "@mui/material";
-import {Inbox as InboxIcon, Mail as MailIcon, Menu as MenuIcon} from '@mui/icons-material';
+import {Inbox as InboxIcon, Mail as MailIcon, Menu as MenuIcon
+,Person2 as Person2Icon,} from '@mui/icons-material';
+import {useRouter} from "next/navigation";
 
 const drawerWidth = 240;
 
@@ -22,6 +24,8 @@ interface DefaultLayoutProps {
 }
 
 const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutProps) => {
+
+    const {push} = useRouter()
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -32,8 +36,24 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
             <Toolbar />
             <Divider />
             <List>
+                <ListItem disablePadding onClick={() => push('/')}>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <Person2Icon />
+                        </ListItemIcon>
+                        <ListItemText primary={'메인'} />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding onClick={() => push('/users')}>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <Person2Icon />
+                        </ListItemIcon>
+                        <ListItemText primary={'사용자'} />
+                    </ListItemButton>
+                </ListItem>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                    <ListItem key={text} disablePadding onClick={() => push('/users')}>
                         <ListItemButton>
                             <ListItemIcon>
                                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

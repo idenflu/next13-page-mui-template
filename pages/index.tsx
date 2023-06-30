@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     const {data, status} = useSession()
     const {push} = useRouter()
 
-    const signin = (event: MouseEventHandler<HTMLButtonElement>) => {
+    const signin = () => {
         push('/auth/signin')
     }
 
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
               </header>
               <section>
                   {
-                      !data && <Button variant={'contained'} onClick={signin}>Signin</Button>
+                      !data && <Button variant={'contained'} onClick={event => signin()}>Signin</Button>
                   }
                   {
                       data && (<div>
