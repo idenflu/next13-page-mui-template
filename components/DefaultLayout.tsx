@@ -60,7 +60,6 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
     };
 
     const hanlerSignout = () => {
-        //signOut()
         handleDialogOpen()
     }
 
