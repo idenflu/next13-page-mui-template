@@ -27,6 +27,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import {signOut, useSession} from "next-auth/react";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import {AccountCircle} from "@mui/icons-material";
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Menu, MenuItem} from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -40,9 +42,39 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
     const {data, status} = useSession()
     const {push} = useRouter()
     const [mobileOpen, setMobileOpen] = useState(false);
+
+    const [open, setOpen] = useState(false);
+
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const hanlerSignout = () => {
+        //signOut()
+        handleDialogOpen()
+    }
+
+
+    const handleDialogOpen = () => {
+        handleClose()
+        setOpen(true);
+    };
+
+    const handleDialogClose = () => {
+        setOpen(false);
+    };
+
+
 
     const drawer = (
         <div>
@@ -99,18 +131,40 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
     const logInOutButton = (
         <>
             {data && status === 'authenticated' ? (
-                <Stack direction={'row'} spacing={2}>
-                    <Avatar defaultValue={'ddd'} />
-                    <IconButton color="inherit" onClick={()=>signOut()}>
-                        <LogoutIcon />
+                <div>
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleMenu}
+                        color="inherit"
+                    >
+                        <AccountCircle />
                     </IconButton>
-                </Stack>
-
-            ) : null}
-            {!data && status === 'unauthenticated' ? (
-                <IconButton color="inherit" >
-                    <LoginIcon />
-                </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={() => {
+                            push('/users')
+                            handleClose()
+                        }}>My account</MenuItem>
+                        <MenuItem onClick={hanlerSignout}>Signout</MenuItem>
+                    </Menu>
+                </div>
             ) : null}
         </>
     );
@@ -182,6 +236,29 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
 
                 {children}
             </Box>
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Use Google's location service?"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Let Google help apps determine location. This means sending anonymous
+                        location data to Google, even when no apps are running.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleDialogClose}>Disagree</Button>
+                    <Button onClick={() => signOut()} autoFocus>
+                        Agree
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 }
