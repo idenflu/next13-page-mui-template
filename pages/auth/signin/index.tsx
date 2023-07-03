@@ -62,7 +62,7 @@ const signin = () => {
                             sx={{ mt: 3, mb: 2 }}
                             size="large"
                         >
-                            회원가입
+                            로그인
                         </Button>
                     </FormControl>
                 </Box>

@@ -21,6 +21,12 @@ import Person2Icon from '@mui/icons-material/Person2';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import {useRouter} from "next/navigation";
+import Button from "@mui/material/Button";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import {signOut, useSession} from "next-auth/react";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 
 const drawerWidth = 240;
 
@@ -31,6 +37,7 @@ interface DefaultLayoutProps {
 
 const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutProps) => {
 
+    const {data, status} = useSession()
     const {push} = useRouter()
     const [mobileOpen, setMobileOpen] = useState(false);
     const handleDrawerToggle = () => {
@@ -39,7 +46,11 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
 
     const drawer = (
         <div>
-            <Toolbar />
+            <Toolbar>
+                <Typography variant="h6" noWrap component="div">
+                    Company name
+                </Typography>
+            </Toolbar>
             <Divider />
             <List>
                 <ListItem disablePadding onClick={() => push('/')}>
@@ -85,6 +96,24 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
         </div>
     );
 
+    const logInOutButton = (
+        <>
+            {data && status === 'authenticated' ? (
+                <Stack direction={'row'} spacing={2}>
+                    <Avatar defaultValue={'ddd'} />
+                    <IconButton color="inherit" onClick={()=>signOut()}>
+                        <LogoutIcon />
+                    </IconButton>
+                </Stack>
+
+            ) : null}
+            {!data && status === 'unauthenticated' ? (
+                <IconButton color="inherit" >
+                    <LoginIcon />
+                </IconButton>
+            ) : null}
+        </>
+    );
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -106,9 +135,12 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Responsive drawer
+                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+                        Responsive drawer1
                     </Typography>
+                    <Box>
+                        {logInOutButton}
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Box

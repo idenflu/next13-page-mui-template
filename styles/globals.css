@@ -3,3 +3,12 @@
   padding: 0;
   margin: 0;
 }
+
+.MuiButtonBase-root {
+  box-shadow: none;
+}
+
+.mui-style-106i0hp-MuiButtonBase-root-MuiButton-root:hover,
+.mui-style-182hcph-MuiButtonBase-root-MuiButton-root:hover {
+  box-shadow: none !important;
+}
