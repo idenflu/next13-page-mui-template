@@ -9,16 +9,28 @@ export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             async authorize(credentials): Promise<User | null> {
+                //console.log(credentials)
 
-                // const response = await fetch('http://localhost:3000/api/login', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     body: JSON.stringify(credentials)
-                // })
+                // try {
+                //     const response = await fetch('http://localhost:8080/v1/auth/signin', {
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //         },
+                //         body: JSON.stringify({
+                //             username: credentials?.username,
+                //             password: credentials?.password
+                //         })
+                //     })
                 //
-                // const user = response.json()
+                //     const user = await response.json()
+                //     console.log(user)
+                // }
+                // catch (e) {
+                //     console.error(e)
+                //     // throw e
+                //     return null
+                // }
 
                 return {
                     id: '1',

@@ -12,7 +12,7 @@ const signin = () => {
         e.preventDefault();
 
         const data = new FormData(e.currentTarget);
-        const username = data.get("usename")
+        const username = data.get("username")
         const password = data.get("password")
 
         const response = await signIn("credentials", {

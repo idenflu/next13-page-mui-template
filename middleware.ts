@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
     const token = await getToken({req, secret, raw:true})
     const {pathname} = req.nextUrl
 
-    //console.log('middleware')
+    console.log('middleware')
 
     if (pathname.startsWith('/auth/signin')) {
         if(token) {
