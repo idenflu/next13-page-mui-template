@@ -3,7 +3,6 @@ import {useState} from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -15,20 +14,23 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-import InboxIcon from '@mui/icons-material/Inbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Person2Icon from '@mui/icons-material/Person2';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import {useRouter} from "next/navigation";
 import Button from "@mui/material/Button";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
 import {signOut, useSession} from "next-auth/react";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import {AccountCircle} from "@mui/icons-material";
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Menu, MenuItem} from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Dialog  from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListSubheader from "@mui/material/ListSubheader";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIocn from "@mui/icons-material/Logout";
 
 const drawerWidth = 240;
 
@@ -51,7 +53,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -100,30 +102,29 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                         <ListItemText primary={'사용자'} />
                     </ListItemButton>
                 </ListItem>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding onClick={() => push('/users')}>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
             </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+            <List subheader={<ListSubheader>In/Outbound</ListSubheader>}>
             </List>
+            <List subheader={<ListSubheader>Equipment</ListSubheader>}>
+            </List>
+            <List subheader={<ListSubheader>Settings</ListSubheader>}>
+            </List>
+
+            {/*<List subheader={<ListSubheader>Settings</ListSubheader>}>*/}
+            {/*</List>*/}
+            {/*<Divider />*/}
+            {/*<List>*/}
+            {/*    {['All mail', 'Trash', 'Spam'].map((text, index) => (*/}
+            {/*        <ListItem key={text} disablePadding>*/}
+            {/*            <ListItemButton>*/}
+            {/*                <ListItemIcon>*/}
+            {/*                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
+            {/*                </ListItemIcon>*/}
+            {/*                <ListItemText primary={text} />*/}
+            {/*            </ListItemButton>*/}
+            {/*        </ListItem>*/}
+            {/*    ))}*/}
+            {/*</List>*/}
         </div>
     );
 
@@ -144,8 +145,30 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                     <Menu
                         id="menu-appbar"
                         anchorEl={anchorEl}
+                        elevation={0}
+                        sx={{
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            '& .MuiAvatar-root': {
+                                width: 32,
+                                height: 32,
+                                ml: -0.5,
+                                mr: 1,
+                            },
+                            '&:before': {
+                                content: '""',
+                                display: 'block',
+                                position: 'absolute',
+                                top: 0,
+                                right: 14,
+                                width: 10,
+                                height: 10,
+                                bgColor: 'background.paper',
+                                transform: 'translateY(-50%) rotate(45deg)',
+                                zIndex: 0}
+                        }}
                         anchorOrigin={{
-                            vertical: 'top',
+                            vertical: 'bottom',
                             horizontal: 'right',
                         }}
                         keepMounted
@@ -156,12 +179,30 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={() => {
+                            push('/')
+                            handleClose()
+                        }}>
+                            <ListItemIcon>
+                                <Person2Icon />
+                            </ListItemIcon>
+                            Profile
+                        </MenuItem>
                         <MenuItem onClick={() => {
                             push('/users')
                             handleClose()
-                        }}>My account</MenuItem>
-                        <MenuItem onClick={hanlerSignout}>Signout</MenuItem>
+                        }}>
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            Home
+                        </MenuItem>
+                        <MenuItem onClick={hanlerSignout}>
+                            <ListItemIcon>
+                                <LogoutIocn />
+                            </ListItemIcon>
+                            Signout
+                        </MenuItem>
                     </Menu>
                 </div>
             ) : null}

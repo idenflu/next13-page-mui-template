@@ -34,19 +34,6 @@ const Home: NextPage = () => {
               <header>
                   <h1>MUI5 + Next.js</h1>
               </header>
-              <section>
-                  {
-                      !data && <Button variant={'contained'} onClick={event => signin()}>Signin</Button>
-                  }
-                  {
-                      data && (<div>
-                          <div>
-                              Welcome {data.user?.name}
-                          </div>
-                          <Button variant={'contained'} onClick={()=> signOut()} >Signout</Button>
-                      </div>)
-                  }
-              </section>
           </div>
       </DefaultLayout>
   );
