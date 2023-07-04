@@ -1,9 +1,12 @@
+import DefaultLayout from "@/components/DefaultLayout";
 
 const dashboard = () => {
     return (
-        <div>
-            dashboard
-        </div>
+        <DefaultLayout>
+            <div>
+                <h1>Dashboard</h1>
+            </div>
+        </DefaultLayout>
     )
 }
 

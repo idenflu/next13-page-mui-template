@@ -31,6 +31,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ListSubheader from "@mui/material/ListSubheader";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIocn from "@mui/icons-material/Logout";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const drawerWidth = 240;
 
@@ -53,7 +54,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleMenu = (event: MouseEvent<HTMLElement>) => {
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -86,28 +87,30 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
             </Toolbar>
             <Divider />
             <List>
-                <ListItem disablePadding onClick={() => push('/')}>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <Person2Icon />
-                        </ListItemIcon>
-                        <ListItemText primary={'메인'} />
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding onClick={() => push('/users')}>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <Person2Icon />
-                        </ListItemIcon>
-                        <ListItemText primary={'사용자'} />
-                    </ListItemButton>
-                </ListItem>
+                <ListItemButton onClick={() => push('/')}>
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Home'} />
+                </ListItemButton>
+                <ListItemButton onClick={() => push('/dashboard')}>
+                    <ListItemIcon>
+                        <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Dashboard'} />
+                </ListItemButton>
             </List>
             <List subheader={<ListSubheader>In/Outbound</ListSubheader>}>
             </List>
             <List subheader={<ListSubheader>Equipment</ListSubheader>}>
             </List>
             <List subheader={<ListSubheader>Settings</ListSubheader>}>
+                <ListItemButton onClick={() => push('/users')}>
+                    <ListItemIcon>
+                        <Person2Icon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Users'} />
+                </ListItemButton>
             </List>
 
             {/*<List subheader={<ListSubheader>Settings</ListSubheader>}>*/}
