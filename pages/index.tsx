@@ -43,7 +43,7 @@ const Home: NextPage = () => {
                           <div>
                               Welcome {data.user?.name}
                           </div>
-                          <Button variant={'contained'} onClick={()=> signOut()}>Signout</Button>
+                          <Button variant={'contained'} onClick={()=> signOut()} >Signout</Button>
                       </div>)
                   }
               </section>
