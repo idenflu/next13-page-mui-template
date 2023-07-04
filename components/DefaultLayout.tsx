@@ -32,6 +32,13 @@ import ListSubheader from "@mui/material/ListSubheader";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIocn from "@mui/icons-material/Logout";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import InputIcon from "@mui/icons-material/Input";
+import OutputIcon from "@mui/icons-material/Output";
+import InventoryIcon from '@mui/icons-material/Inventory';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 240;
 
@@ -62,10 +69,9 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
         setAnchorEl(null);
     };
 
-    const hanlerSignout = () => {
+    const handleSignout = () => {
         handleDialogOpen()
     }
-
 
     const handleDialogOpen = () => {
         handleClose()
@@ -82,11 +88,11 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
         <div>
             <Toolbar>
                 <Typography variant="h6" noWrap component="div">
-                    Company name
+
                 </Typography>
             </Toolbar>
             <Divider />
-            <List>
+            <List subheader={<ListSubheader>/</ListSubheader>}>
                 <ListItemButton onClick={() => push('/')}>
                     <ListItemIcon>
                         <HomeIcon />
@@ -100,34 +106,60 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                     <ListItemText primary={'Dashboard'} />
                 </ListItemButton>
             </List>
-            <List subheader={<ListSubheader>In/Outbound</ListSubheader>}>
+            {/*<List subheader={<ListSubheader>INVENTORY</ListSubheader>}>*/}
+            {/*</List>*/}
+            {/*<List subheader={<ListSubheader>RECEPTION</ListSubheader>}>*/}
+            {/*</List>*/}
+            {/*<List subheader={<ListSubheader>DISPATCH</ListSubheader>}>*/}
+            {/*</List>*/}
+            <List subheader={<ListSubheader>Operation</ListSubheader>}>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <InventoryIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Inventory'} />
+                    <ExpandMoreIcon />
+                </ListItemButton>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <InputIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Reception'} />
+                    <ExpandMoreIcon />
+                </ListItemButton>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <OutputIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Dispatch'} />
+                    <ExpandMoreIcon />
+                </ListItemButton>
             </List>
-            <List subheader={<ListSubheader>Equipment</ListSubheader>}>
+            <List subheader={<ListSubheader>Reports</ListSubheader>}>
             </List>
             <List subheader={<ListSubheader>Settings</ListSubheader>}>
+
                 <ListItemButton onClick={() => push('/users')}>
                     <ListItemIcon>
                         <Person2Icon />
                     </ListItemIcon>
                     <ListItemText primary={'Users'} />
                 </ListItemButton>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <PrecisionManufacturingIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Equipment'} />
+                    <ExpandMoreIcon />
+                </ListItemButton>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Setting'} />
+                    <ExpandMoreIcon />
+                </ListItemButton>
             </List>
-
-            {/*<List subheader={<ListSubheader>Settings</ListSubheader>}>*/}
-            {/*</List>*/}
-            {/*<Divider />*/}
-            {/*<List>*/}
-            {/*    {['All mail', 'Trash', 'Spam'].map((text, index) => (*/}
-            {/*        <ListItem key={text} disablePadding>*/}
-            {/*            <ListItemButton>*/}
-            {/*                <ListItemIcon>*/}
-            {/*                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
-            {/*                </ListItemIcon>*/}
-            {/*                <ListItemText primary={text} />*/}
-            {/*            </ListItemButton>*/}
-            {/*        </ListItem>*/}
-            {/*    ))}*/}
-            {/*</List>*/}
         </div>
     );
 
@@ -200,7 +232,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                             </ListItemIcon>
                             Home
                         </MenuItem>
-                        <MenuItem onClick={hanlerSignout}>
+                        <MenuItem onClick={handleSignout}>
                             <ListItemIcon>
                                 <LogoutIocn />
                             </ListItemIcon>
@@ -232,7 +264,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                        {/*Responsive drawer1*/}
+                        ARDVUS, ONPLUX
                     </Typography>
                     <Box>
                         {logInOutButton}
@@ -271,15 +303,24 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                 </Drawer>
             </Box>
             <Box
-                height="100vh"
-                bgcolor="#eee"
+                bgcolor={'#eee'}
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
 
-                {children}
+                <Box height="100vh">
+                    {children}
+                </Box>
+                <footer>
+                    <Typography variant={'body2'} color={'text.secondary'} align={'center'}>
+                        Copyright 2023. ????.All rights reserved.
+                    </Typography>
+                </footer>
             </Box>
+
+
+
 
             <Dialog
                 open={open}
