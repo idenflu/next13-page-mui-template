@@ -303,7 +303,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                 </Drawer>
             </Box>
             <Box
-                height="100vh"
+
                 bgcolor={'#eee'}
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
