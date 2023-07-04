@@ -303,8 +303,6 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                 </Drawer>
             </Box>
             <Box
-
-                bgcolor={'#eee'}
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
@@ -328,7 +326,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">
                 <DialogTitle id="alert-dialog-title">
-                    {"Use Google's location service?"}
+                    {"로그아웃 하시겠습니까?"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
