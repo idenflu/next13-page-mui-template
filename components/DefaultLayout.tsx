@@ -313,11 +313,11 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                 <Box height={'100%'}>
                     {children}
                 </Box>
-                <footer>
-                    <Typography variant={'body2'} color={'text.secondary'} align={'center'}>
-                        Copyright 2023. ????.All rights reserved.
-                    </Typography>
-                </footer>
+                {/*<footer>*/}
+                {/*    <Typography variant={'body2'} color={'text.secondary'} align={'center'}>*/}
+                {/*        Copyright 2023. ????.All rights reserved.*/}
+                {/*    </Typography>*/}
+                {/*</footer>*/}
             </Box>
 
 
