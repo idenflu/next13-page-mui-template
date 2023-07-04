@@ -310,9 +310,8 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
             >
                 <Toolbar />
 
-                <Box height={'100%'}>
-                    {children}
-                </Box>
+                {children}
+
                 {/*<footer>*/}
                 {/*    <Typography variant={'body2'} color={'text.secondary'} align={'center'}>*/}
                 {/*        Copyright 2023. ????.All rights reserved.*/}
