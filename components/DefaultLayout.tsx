@@ -124,14 +124,14 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                     <ListItemIcon>
                         <InputIcon />
                     </ListItemIcon>
-                    <ListItemText primary={'Reception'} />
+                    <ListItemText primary={'Inbound'} />
                     <ExpandMoreIcon />
                 </ListItemButton>
                 <ListItemButton>
                     <ListItemIcon>
                         <OutputIcon />
                     </ListItemIcon>
-                    <ListItemText primary={'Dispatch'} />
+                    <ListItemText primary={'Outbound'} />
                     <ExpandMoreIcon />
                 </ListItemButton>
             </List>
