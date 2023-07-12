@@ -7,7 +7,6 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -87,8 +86,8 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
     const drawer = (
         <div>
             <Toolbar>
-                <Typography variant="h6" noWrap component="div">
-
+                <Typography variant="h6" fontWeight={'700'} noWrap component="div">
+                    idenflu
                 </Typography>
             </Toolbar>
             <Divider />
@@ -264,7 +263,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                        ARDVUS, ONPLUX
+
                     </Typography>
                     <Box>
                         {logInOutButton}
@@ -330,8 +329,7 @@ const DefaultLayout: NextPage<DefaultLayoutProps> = ({children}:DefaultLayoutPro
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Let Google help apps determine location. This means sending anonymous
-                        location data to Google, even when no apps are running.
+                        -
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
